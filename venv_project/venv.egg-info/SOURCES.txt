@@ -1,0 +1,8 @@
+dev-requirements.txt
+pyproject.toml
+tests/test_venv.py
+venv.egg-info/PKG-INFO
+venv.egg-info/SOURCES.txt
+venv.egg-info/dependency_links.txt
+venv.egg-info/requires.txt
+venv.egg-info/top_level.txt
