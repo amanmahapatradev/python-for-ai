@@ -1,0 +1,10 @@
+dev-requirements.txt
+pyproject.toml
+tests/test_ydantic.py
+ydantic/__init__.py
+ydantic/__main__.py
+ydantic.egg-info/PKG-INFO
+ydantic.egg-info/SOURCES.txt
+ydantic.egg-info/dependency_links.txt
+ydantic.egg-info/requires.txt
+ydantic.egg-info/top_level.txt

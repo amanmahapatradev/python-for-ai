@@ -6,6 +6,12 @@
             "type": "debugpy",
             "request": "launch",
             "module": "venv"
+        },
+        {
+            "name": "Python Package: ydantic",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "ydantic"
         }
     ]
 }

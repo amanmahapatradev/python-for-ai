@@ -5,6 +5,11 @@
             "path": "venv_project",
             "envManager": "ms-python.python:venv",
             "packageManager": "ms-python.python:pip"
+        },
+        {
+            "path": "ydantic_project",
+            "envManager": "ms-python.python:venv",
+            "packageManager": "ms-python.python:pip"
         }
     ],
     "python.testing.unittestArgs": [
