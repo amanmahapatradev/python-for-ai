@@ -401,3 +401,124 @@ patient_data = {
 patient_1 = PatientData(**patient_data)
 add_patient_data(patient_1)
 
+#--------------------------------------------------------------------------------------
+# Computed Fields
+
+from pydantic import BaseModel,EmailStr,AnyUrl,Field,field_validator,model_validator,computed_field
+from typing import List,Dict,Optional,Annotated
+
+class PatientData(BaseModel):
+    
+    name: str
+    email: EmailStr
+    linkedin_url: AnyUrl
+    age: int
+    weight: float
+    height: float
+    married: bool
+    allergies: List[str]
+    contact_info: Dict[str , str]
+    
+    @computed_field
+    @property
+    def bmi(self) -> float:
+        bmi = round(self.weight/(self.height**2),2)
+        return bmi
+    
+def add_patient_data(patient: PatientData):
+    print("Name:", patient.name)
+    print("Email:", patient.email)
+    print("Linkedin:", patient.linkedin_url)
+    print("Age:", patient.age)
+    print("Weight:", patient.weight)
+    print("Height:", patient.height)
+    print("Married:", patient.married)
+    print("Allergies:", patient.allergies)
+    print("Contact Info:", patient.contact_info)
+    print("BMI:", patient.bmi)
+    print("Data added successfully to the database !")
+    
+patient_data = {"name": "John",
+    "email": "john1458@gmail.com",
+    "linkedin_url": "https://www.linkedin.com",
+    "age": 75,
+    "weight": 51.25,
+    "height": 1.75,
+    "married": True,
+    "allergies": ["peanuts", "shellfish"],
+    "contact_info": {
+        "phone": "354-168-2458",
+        "emergency": "322-458-3165"
+    }
+}
+
+patient_1 = PatientData(**patient_data)
+add_patient_data(patient_1)
+
+#---------------------------------------------------------------------
+# Nested Models
+
+from pydantic import BaseModel
+class Address(BaseModel):
+    city: str
+    state: str
+    pin: str
+
+class Patientdata(BaseModel):
+    
+    name: str
+    gender: str
+    age: int 
+    address: Address
+    
+address_dict = {'city':'gurgaon',
+                'state': 'harayana',
+                'pin': '122001'}
+
+address1 = Address(**address_dict)
+patient_dict = {'name': 'Himanshu',
+                'gender': 'male',
+                'age': 24,
+                'address': address1}
+
+patient1 = Patientdata(**patient_dict)
+
+print(patient1)
+print(patient1.name)
+print(patient1.address)
+print(patient1.address.city)
+
+#-----------------------------------------------------------------------
+# Serilization
+
+
+from pydantic import BaseModel
+class Address(BaseModel):
+    city: str
+    state: str
+    pin: str
+
+class Patientdata(BaseModel):
+    
+    name: str
+    gender: str
+    age: int 
+    address: Address
+    
+address_dict = {'city':'gurgaon',
+                'state': 'harayana',
+                'pin': '122001'}
+
+address1 = Address(**address_dict)
+patient_dict = {'name': 'Himanshu',
+                'gender': 'male',
+                'age': 24,
+                'address': address1}
+
+patient1 = Patientdata(**patient_dict)
+
+temp = patient1.model_dump()
+# temp = patient1.model_dump_json()
+
+print(temp)
+print(type(temp))
